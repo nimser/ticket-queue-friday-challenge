@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect } from "react"
+import { Dispatch, SetStateAction, useCallback, useEffect } from "react"
 import { TicketItem } from "./Ticket"
 import Booth from "./Booth"
 
@@ -17,7 +17,7 @@ function BoothArea({
   ticketList,
   setTicketList,
 }: BoothAreaProps) {
-  const clearTickets = () => {
+  const clearTickets = useCallback(() => {
     for (const [index, ticket] of boothAvailability.entries()) {
       if (ticket?.isProcessed()) {
         setBoothAvailability((old) =>
@@ -26,7 +26,7 @@ function BoothArea({
         return
       }
     }
-  }
+  }, [boothAvailability, setBoothAvailability])
 
   useEffect(() => {
     clearTickets()
@@ -43,7 +43,13 @@ function BoothArea({
       )
       first.startCountdown()
     }
-  }, [boothAvailability, setBoothAvailability, setTicketList, ticketList])
+  }, [
+    boothAvailability,
+    clearTickets,
+    setBoothAvailability,
+    setTicketList,
+    ticketList,
+  ])
 
   return (
     <section
