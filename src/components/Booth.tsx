@@ -19,6 +19,14 @@ export default function Booth({
       >
         BOOTH {id}
       </div>
+      <p
+        style={{
+          fontWeight: "bold",
+          color: "green",
+        }}
+      >
+        {ticket && Math.abs(ticket.processingTime - ticket.countdown)}
+      </p>
     </section>
   )
 }

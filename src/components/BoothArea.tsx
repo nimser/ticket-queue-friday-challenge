@@ -6,7 +6,7 @@ export const BOOTH_COUNT = 3
 
 interface BoothAreaProps {
   boothAvailability: TicketItem[]
-  setBoothAvailability: Dispatch<SetStateAction<TicketItem[]>>
+  setBoothAvailability: Dispatch<SetStateAction<(TicketItem | undefined)[]>>
   ticketList: TicketItem[]
   setTicketList: Dispatch<SetStateAction<TicketItem[]>>
 }
@@ -17,8 +17,23 @@ function BoothArea({
   ticketList,
   setTicketList,
 }: BoothAreaProps) {
+  const clearTickets = () => {
+    for (const [index, ticket] of boothAvailability.entries()) {
+      if (ticket?.isProcessed()) {
+        setBoothAvailability((old) =>
+          old.map((b, i) => (index === i ? undefined : b))
+        )
+        return
+      }
+    }
+  }
+
   useEffect(() => {
-    const availableBooth = boothAvailability.findIndex((booth) => !booth)
+    clearTickets()
+
+    const availableBooth = boothAvailability.findIndex(
+      (booth) => booth === undefined
+    )
 
     if (availableBooth !== -1 && ticketList.length !== 0) {
       const [first, ...rest] = ticketList
@@ -26,6 +41,7 @@ function BoothArea({
       setBoothAvailability((old) =>
         old.map((b, i) => (availableBooth === i ? first : b))
       )
+      first.startCountdown()
     }
   }, [boothAvailability, setBoothAvailability, setTicketList, ticketList])
 
