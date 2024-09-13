@@ -1,40 +1,22 @@
-import { Dispatch, SetStateAction } from "react"
-import { TicketItem } from "./Ticket"
-import { wrap } from "module"
+import Ticket, { TicketItem } from "./Ticket"
 
 interface QueueProps {
   ticketList: TicketItem[]
-  boothAvailability: TicketItem[]
-  setBoothAvailability: Dispatch<SetStateAction<TicketItem[]>>
 }
 
-function Queue({
-  ticketList,
-  boothAvailability,
-  setBoothAvailability,
-}: QueueProps) {
+function Queue({ ticketList }: QueueProps) {
   return (
     <section
       style={{
-        width: "390px",
-        backgroundColor: "palegreen",
+        width: "410px",
+        backgroundColor: "rgba(0,0,0,.1)",
         display: "flex",
         flexDirection: "row-reverse",
         flexWrap: "wrap-reverse",
       }}
     >
-      {ticketList.map((ticket) => (
-        <div
-          style={{
-            height: "50px",
-            width: "120px",
-            margin: "5px",
-            border: "1 px solid gray",
-            backgroundColor: "pink",
-          }}
-        >
-          {ticket.id}
-        </div>
+      {ticketList.map((ticket, i) => (
+        <Ticket key={i} ticket={ticket} />
       ))}
     </section>
   )

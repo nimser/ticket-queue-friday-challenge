@@ -19,3 +19,22 @@ export class TicketItem {
     )
   }
 }
+
+export default function Ticket({ ticket }: { ticket: TicketItem }) {
+  return (
+    <div
+      style={{
+        height: "50px",
+        width: "120px",
+        margin: "5px",
+        border: "2px dotted black",
+        backgroundColor: "rgba(0,0,0,.5)",
+        opacity: ".8",
+        display: "grid",
+        placeContent: "center",
+      }}
+    >
+      {ticket.id}
+    </div>
+  )
+}

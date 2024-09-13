@@ -2,12 +2,10 @@ import "./App.css"
 
 import Dispenser from "./components/Dispenser"
 import Queue from "./components/Queue"
-import BoothArea from "./components/BoothArea"
+import BoothArea, { BOOTH_COUNT } from "./components/BoothArea"
 import { useState } from "react"
 
 import type { TicketItem } from "./components/Ticket"
-
-const BOOTH_COUNT = 3
 
 function App() {
   // *States*
@@ -25,6 +23,8 @@ function App() {
     <main
       style={{
         display: "flex",
+        alignItems: "center",
+        gap: "2rem",
       }}
     >
       <Dispenser setTicketList={setTicketList} />

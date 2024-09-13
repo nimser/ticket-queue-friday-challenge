@@ -25,8 +25,20 @@ function Dispenser({ setTicketList }: DispenserProps) {
   }, [autoPrintCountdown, setTicketList])
 
   return (
-    <div style={{ width: "200px", height: "200px", background: "pink" }}>
-      Printing new ticket in {autoPrintCountdown}
+    <div
+      style={{
+        width: "200px",
+        height: "200px",
+        background: "rgba(0,0,0,.6)",
+        borderRadius: "1rem",
+        padding: "1rem",
+        fontSize: "2rem",
+        display: "grid",
+        placeContent: "center",
+      }}
+    >
+      Printing new ticket in <br />
+      {autoPrintCountdown}
     </div>
   )
 }
