@@ -5,7 +5,7 @@ interface DispenserProps {
   setTicketList: Dispatch<React.SetStateAction<TicketItem[]>>
 }
 
-const PRINT_PERIOD = 8
+const PRINT_PERIOD = 3
 
 function Dispenser({ setTicketList }: DispenserProps) {
   // Auto-print counter, resets at every print

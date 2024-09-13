@@ -16,7 +16,7 @@ function App() {
   // 3. BoothAvailability
   // Updated every time a booth becomes free (prev. ticket stayed there the duration of its `processingTime`)
   const [boothAvailability, setBoothAvailability] = useState<TicketItem[]>(
-    Array(BOOTH_COUNT)
+    Array.from(Array(BOOTH_COUNT))
   )
 
   return (
@@ -28,12 +28,13 @@ function App() {
       }}
     >
       <Dispenser setTicketList={setTicketList} />
-      <Queue
-        ticketList={ticketList}
+      <Queue ticketList={ticketList} />
+      <BoothArea
         boothAvailability={boothAvailability}
         setBoothAvailability={setBoothAvailability}
+        ticketList={ticketList}
+        setTicketList={setTicketList}
       />
-      <BoothArea />
     </main>
   )
 }

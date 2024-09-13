@@ -1,13 +1,24 @@
-export default function Booth({ id }: { id: number }) {
+import Ticket, { TicketItem } from "./Ticket"
+
+export default function Booth({
+  id,
+  ticket,
+}: {
+  id: number
+  ticket: TicketItem
+}) {
   return (
-    <div
-      style={{
-        border: "2px dashed black",
-        padding: "2rem",
-        fontWeight: "bold",
-      }}
-    >
-      BOOTH {id}
-    </div>
+    <section style={{ display: "flex", gap: "1rem" }}>
+      {ticket && <Ticket ticket={ticket} />}
+      <div
+        style={{
+          border: "2px dashed black",
+          padding: "2rem",
+          fontWeight: "bold",
+        }}
+      >
+        BOOTH {id}
+      </div>
+    </section>
   )
 }
